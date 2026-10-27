@@ -1,0 +1,8 @@
+# Blender backups
+*.blend1
+*.blend2
+
+# Heavy design files -> synced to Google Drive via rclone (see scripts/sync-drive.sh)
+# Not stored in git. Run `scripts/pull-drive.sh` to fetch them.
+*.blend
+3d-files/

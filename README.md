@@ -11,6 +11,16 @@ Chuyển đế + nắp tượng Wolverine/Weapon-X (ref `3d-first-final.jpg`) th
 | `print/*.stl` | Part in 3D (xem bảng dưới). |
 | `memory/` | Memory project (spec, số đo, luật thiết kế). |
 | `CLAUDE.md` | Luật cho agent. |
+| `scripts/sync-drive.sh` / `pull-drive.sh` | Đẩy/kéo file nặng lên Google Drive (rclone). |
+
+## File nặng -> Google Drive (rclone)
+
+File nặng (`wolverine-fishtank.blend`, `3d-files/`) KHÔNG nằm trong git (gitignored) - chúng ở Google Drive, folder `weapon-x-fishtank`, sync qua rclone. Git chỉ giữ text + `print/*.stl` + ảnh.
+
+- **Tự động:** hook `.git/hooks/pre-push` chạy `scripts/sync-drive.sh` mỗi khi `git push` -> file nặng tự lên Drive. Không ăn GitHub bandwidth.
+- **Clone máy mới:** `git clone` xong chạy `bash scripts/pull-drive.sh` để kéo file nặng từ Drive về.
+- **Sync tay:** `bash scripts/sync-drive.sh`.
+- Remote rclone tên `gdrive` (đổi qua env `RCLONE_REMOTE`). rclone chưa có trên PATH thì set `RCLONE=/đường/dẫn/rclone.exe`.
 
 ## Part thiết kế (part `FT_` = in 3D, rời, tháo được)
 

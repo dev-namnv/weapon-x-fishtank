@@ -4,9 +4,10 @@
 set -euo pipefail
 REMOTE="${RCLONE_REMOTE:-gdrive}"          # rclone remote name (see `rclone config`)
 DEST="${RCLONE_DEST:-weapon-x-fishtank}"   # folder on the Drive
+RCLONE="${RCLONE:-rclone}"                 # override if rclone not on PATH
 cd "$(dirname "$0")/.."
 
 echo "[sync-drive] uploading heavy files to ${REMOTE}:${DEST} ..."
-rclone copy wolverine-fishtank.blend "${REMOTE}:${DEST}/" --progress
-rclone copy 3d-files "${REMOTE}:${DEST}/3d-files" --progress
+"$RCLONE" copy wolverine-fishtank.blend "${REMOTE}:${DEST}/" --progress
+"$RCLONE" copy 3d-files "${REMOTE}:${DEST}/3d-files" --progress
 echo "[sync-drive] done."
